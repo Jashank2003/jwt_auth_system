@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const router = require('./routes/authRoutes');
 const {requireAuth,checkUser} = require('./middleware/authMiddleware');
+require('dotenv').config();
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(router);
 app.set('view engine', 'ejs');
 
 
-const dburi = 'mongodb+srv://jashankjain224:SPIDERALERT224@cluster0.2osscc1.mongodb.net/jwt_auth';
+const dburi = process.env.MONGO_URI;
 
 mongoose.connect(dburi)
     .then((result) => {
